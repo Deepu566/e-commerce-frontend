@@ -1,0 +1,101 @@
+.product {
+    padding: 20px 50px;
+    display: flex;
+    gap: 20px;
+
+    .left {
+        display: flex;
+        margin: 20px;
+        gap: 20px;
+        flex: 1;
+
+
+        .smallImg {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border-radius: 5px;
+            flex: 1;
+
+            img {
+                height: 100px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .mainImg {
+            height: 400px;
+            flex: 5;
+            height: 500px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                max-height: 800px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .price {
+            font-size: 25px;
+            color: rgb(75, 75, 216);
+        }
+
+        p {
+            font-size: 15px;
+            text-align: justify;
+            color: gray;
+            font-weight: 300;
+        }
+
+        .choose {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            button {
+                padding: 10px 15px;
+                border: none;
+                cursor: pointer;
+
+            }
+        }
+
+        .add {
+            width: 250px;
+            background-color: rgb(97, 97, 190);
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 17px;
+            cursor: pointer;
+            color: white;
+            font-weight: 500;
+            padding: 5px 10px;
+        }
+
+        .link {
+            display: flex;
+            gap: 20px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2879fe;
+        }
+    }
+}

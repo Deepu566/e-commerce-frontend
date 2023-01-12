@@ -1,0 +1,41 @@
+.frame {
+    height: calc(100vh - 50px);
+    // width: 100vw;
+    overflow: hidden;
+    position: relative;
+
+
+    .arrow {
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        cursor: pointer;
+        z-index: 2;
+
+    }
+
+    .left {
+        transform: rotate(180deg);
+        top: 48%;
+        left: 20px;
+    }
+
+    .right {
+        right: 20px;
+        top: 48%;
+    }
+
+    .slider {
+        display: flex;
+        height: 100%;
+        width: 300vw;
+        transition: all 1s ease;
+
+        .sliderImage {
+            height: 100%;
+            width: 100vw;
+            object-fit: cover;
+
+        }
+    }
+}
