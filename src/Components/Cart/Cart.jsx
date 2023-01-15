@@ -3,8 +3,11 @@ import "./Cart.scss"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, resetCart } from '../../redux/cartReducer';
+import { loadStripe } from '@stripe/stripe-js';
+import { makeRequest } from '../../makeRequest';
 const Cart = () => {
-    const products = useSelector(state => state.cart.products)
+    const products = useSelector((state) => state.cart.products)
+    const dispatch = useDispatch();
     const totalPrice = () => {
         let total = 0;
         products.forEach((item) => {
@@ -12,7 +15,24 @@ const Cart = () => {
         })
         return total.toFixed(2);
     }
-    const dispatch = useDispatch();
+    const stripePromise = loadStripe(
+        "pk_test_51MQSY1SDnEPTQqe0QDFjnRfUEKFuXcQvKaLYMc2qQqXeCu9HyexnuNs2bxHSB6xOBJAambcUrFPr6IYbacn0tc6o00AoIuGLt2"
+    );
+
+    const handlePayment = async () => {
+        try {
+            const stripe = await stripePromise;
+            const res = await makeRequest.post("/orders", {
+                products,
+            });
+            await stripe.redirectToCheckout({
+                sessionId: res.data.stripeSession.id,
+            });
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className='cart'>
             <div className="cart1">
@@ -34,7 +54,7 @@ const Cart = () => {
                     <span>Rs. {totalPrice()}</span>
                 </div>
 
-                <button>PROCEED TO CHECKOUT</button>
+                <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
                 <span className="reset" onClick={() => dispatch(resetCart())}>Reset</span>
             </div>
         </div>
